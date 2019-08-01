@@ -1,0 +1,40 @@
+{% extends "material/frontend/base_site.html" %}
+{% load i18n material_form static %}
+
+{% block breadcrumbs_items %}
+<a href="/nudge/">Home</a>
+<a class="active" href="/nudge/manage/">Manage</a>
+{% endblock %}
+
+{% block sidenav_items %}
+<li><a href="/nudge/" class="collapsible-header" data-turbolinks="false">Home<i class="material-icons">home</i></a></li>
+
+<li class="active">
+  <ul class="collapsible collapsible-accordion">
+      <li>
+          <a href="/nudge/manage/" class="collapsible-header active">Manage<i class="material-icons">dashboard</i></a>
+          <div class="collapsible-body" style="display:block">
+            <ul>
+              {% for item, row in data %}
+                  {% for column_name, item in row.items %}
+                  <li>
+                      {% if column_name in view.datalist.list_display_links %}
+                      <a href="#">{{ item }}</a>
+                      {% else %}
+                      {{ item }}
+                      {% endif %}
+                  </li>
+                  {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+      </li>
+  </ul>
+</li>
+
+<li><a href="/nudge/explore/" class="collapsible-header" data-turbolinks="false">Explore<i class="material-icons">local_activity</i></a></li>
+<li class="last"><a href="/nudge/profile/" class="collapsible-header" data-turbolinks="false">Profile<i class="material-icons">account_circle</i></a></li>
+{% endblock %}
+
+{% block content %}
+{% endblock %}

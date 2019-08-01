@@ -1,0 +1,70 @@
+{% extends "material/frontend/base.html" %}
+
+{% load i18n static %}
+
+{% block title %}Nudge{% endblock %}
+
+{% block favicon %}
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static '/image/favicon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static '/image/favicon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static '/image/favicon/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static '/image/favicon/site.webmanifest' %}">
+  <link rel="mask-icon" href="{% static '/image/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="theme-color" content="#ffffff">
+{% endblock %}
+
+{% block sidenav_header %}
+<li>
+    <div class="user-view">
+        <div class="background">
+          {% if user.profile.banner %}
+            <img src="{{ user.profile.banner.url }}">
+          {% else %}
+            <img src="{% static 'material/imgs/sidenav.svg' %}">
+          {% endif %}
+        </div>
+        {% block userphoto %}
+          {% if user.profile.avatar %}
+            <a href="#"><img class="circle" src="{{ user.profile.avatar.url }}"></a>
+          {% else %}
+            <a href="#"><img class="circle" src="{% static 'material/imgs/user.png' %}"></a>
+          {% endif %}
+        {% endblock %}
+        <a href="#"><span class="white-text name">{{ request.user.get_username|title }}</span></a>
+        <a href="#"><span class="white-text email">{{ request.user.email }}</span></a>
+    </div>
+</li>
+{% endblock %}
+
+{% block sidenav_items %}
+<li><a href="/nudge/" class="collapsible-header" data-turbolinks="false">Home<i class="material-icons">home</i></a></li>
+<li><a href="/nudge/manage/" class="collapsible-header" data-turbolinks="false">Manage<i class="material-icons">dashboard</i></a></li>
+{% endblock %}
+
+{% block topbar %}
+<nav class="topbar">
+    <div class="nav-wrapper">
+        <dmc-sidenav-trigger><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></dmc-sidenav-trigger>
+        <div class="brand-logo">
+            {% block page_title %}Nudge{% endblock %}
+        </div>
+        <ul id="nav-mobile" class="right">
+            {% block topbar_links %}
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}" data-turbolinks="false"><i class="material-icons right">exit_to_app</i>{% trans "Log out" %}</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}" data-turbolinks="false"><i class="material-icons right">lock_open</i>{% trans "Log in" %}</a></li>
+            {% endif %}
+            {% endblock %}
+        </ul>
+    </div>
+</nav>
+{% endblock topbar %}
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+    <div class="nav-wrapper left">
+        {% block breadcrumbs_items %}{% endblock %}
+    </div>
+</nav>
+{% endblock %}

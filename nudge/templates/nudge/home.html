@@ -1,0 +1,23 @@
+{% extends "material/frontend/base_site.html" %}
+{% load i18n material_form static %}
+
+{% block breadcrumbs_items %}
+<a class="active" href="/home/">Home</a>
+{% endblock %}
+
+{% block sidenav_items %}
+<li><a href="/home/" class="collapsible-header" data-turbolinks="false">Home<i class="material-icons">home</i></a></li>
+<li><a href="/manage/" class="collapsible-header" data-turbolinks="false">Manage<i class="material-icons">settings</i></a></li>
+<li><a href="/explore/" class="collapsible-header" data-turbolinks="false">Explore<i class="material-icons">local_activity</i></a></li>
+<li><a href="/profile/" class="collapsible-header" data-turbolinks="false">Profile<i class="material-icons">account_circle</i></a></li>
+{% endblock %}
+
+{% block content %}
+<div class="left-panel">
+  <div class="card">
+    <div class="card content">
+
+    </div>
+  </div>
+</div>
+{% endblock %}

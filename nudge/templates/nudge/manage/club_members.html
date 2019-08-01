@@ -1,0 +1,51 @@
+{% extends "nudge/manage/club_detail.html" %}
+{% load i18n material_form material_form_internal material_frontend static %}
+
+{% block breadcrumbs_items %}
+<a href="/nudge/">Home</a>
+<a href="/nudge/manage/">Manage</a>
+<a href="/nudge/manage/preview/{{object.id}}">{{object}}</a>
+<a class="active">Members</a>
+{% endblock %}
+
+{% block content %}
+{% block left-panel %}
+<div class="left-panel">
+    <div class="card">
+        <dmc-form>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card-content">
+                    <div class="card-title">{{object.name}}</div>
+                    {% block form %}
+                    {% if view.layout or form.layout%}
+                    {% if view.layout %}
+                    {% form layout=view.layout %}{% endform %}
+                    {% endif %}
+                    {% if form.layout %}
+                    {% form layout=form.layout %}{% endform %}
+                    {% endif %}
+                    {% else %}
+                    {% form %}{% endform %}
+                    {% for name, formset in formsets.items %}
+                    <table>
+                        {{ formset.as_table }}
+                    </table>
+                    {% endfor %}
+                    {% endif %}
+                    {% endblock %}
+                </div>
+                <div class="card-action">
+                    <div class="right-align">
+                        {% block submit_row %}
+                        <button type="submit" class="waves-effect waves-light btn white-text">{% trans 'Save' %}</button>
+                        {% endblock %}
+                    </div>
+                </div>
+            </form>
+        </dmc-form>
+    </div>
+</div>
+{% endblock left-panel %}
+{% block right-panel %}{% endblock right-panel %}
+{% endblock %}

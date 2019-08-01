@@ -1,0 +1,50 @@
+{% extends "material/frontend/base_site.html" %}
+{% load i18n static %}
+
+{% block body %}
+{% block main %}
+
+<div class="registration" style="background:url({% static 'material/imgs/background.svg' %})">
+    <dmc-sidenav>
+    <div id ="slide-out" class="sidebar z-depth-3">
+        <img style='max-width: 40%; margin-bottom: 0px;' src="{% static 'image/logo.png' %}"></img>
+        <h4 style='margin-top: 10px; margin-bottom: 20px'>{% block page_title %}{{ block.super }}{% endblock %}</h4>
+        {% block content %}
+        {% endblock %}
+    </div>
+    </dmc-sidenav>
+
+    {% block icon_wrapper %}
+    <div class="logo">
+      <div class="row">
+        <div class="col s10 offset-s1">
+          <div class="card z-depth-1">
+            <div class="card-content">
+
+              <div class="row" style="padding:20px">
+                <div class="col s12 center-align">
+                  <img style='max-width: 100%' src="{% static 'image/nudge_typographic.png' %}"></img>
+                </div>
+                <div class="col s12">
+                  <span class="card-title black-text">All it takes is a little nudge.</span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s12 m10 offset-m1">
+                <div class="divider"></div>
+                <div id="about" class="section">
+                  <span class="card-title black-text">Nudge is a tech/management team and community-fostering event management system that helps to inform students on their college campus.</span>
+                </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+</div>
+{% endblock %}
+{% endblock %}

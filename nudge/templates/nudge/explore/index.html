@@ -1,0 +1,26 @@
+{% extends "material/frontend/base_site.html" %}
+{% load i18n material_form static %}
+
+{% block breadcrumbs_items %}
+<a href="/nudge/">Home</a>
+<a class="active" href="/nudge/explore/">Explore</a>
+{% endblock %}
+
+{% block sidenav_items %}
+{{ block.super }}
+<li class="active">
+  <ul class="collapsible collapsible-accordion">
+      <li>
+          <a href="/nudge/explore/" class="collapsible-header active">Explore<i class="material-icons">local_activity</i></a>
+          <div class="collapsible-body" style="display:block">
+            <ul>
+              <li><a href="/nudge/explore/clubs/">Clubs<i class="material-icons">contacts</i></a></li>
+              <li><a href="/nudge/explore/events/">Events<i class="material-icons">event</i></a></li>
+            </ul>
+          </div>
+      </li>
+  </ul>
+</li>
+
+<li class="last"><a href="/nudge/profile/" class="collapsible-header" data-turbolinks="false">Profile<i class="material-icons">account_circle</i></a></li>
+{% endblock %}

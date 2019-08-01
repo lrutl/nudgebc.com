@@ -1,0 +1,42 @@
+{% extends "nudge/explore/club_list.html" %}
+{% load i18n material_form material_frontend static %}
+
+{% block extrahead %}
+<link href="{% static 'css/ecd.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block breadcrumbs_items %}
+<a href="/nudge/">Home</a>
+<a href="/nudge/explore/">Explore</a>
+<a href="/nudge/explore/clubs/">Clubs</a>
+<a class="active">{{ object }}</a>
+{% endblock %}
+
+{% block content %}
+{% block left-panel %}
+<div class="left-panel">
+  <div class="card">
+    <div class="card-content">
+
+    {% if object.banner %}
+      <img align="left" class="explore-banner" src="{{ object.banner.url }}"/>
+    {% else %}
+      <img align="left" class="explore-banner" src="{% static 'material/imgs/sidenav.svg' %}"/>
+    {% endif %}
+
+    {% if object.avatar %}
+      <img align="left" class="explore-avatar thumbnail" src="{{ object.avatar.url }}"/>
+    {% else %}
+      <img align="left" class="explore-avatar thumbnail" src="{% static 'material/imgs/user.png' %}"/>
+    {% endif %}
+
+      <div>
+        <h1>{{object.name}}</h1>
+        <p>{{object.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock left-panel %}
+{% block right-panel %}{% endblock right-panel %}
+{% endblock %}
